@@ -102,8 +102,8 @@ https://miservidor/api/v1/
                                             GET     Listado de usuarios
                                             POST    Nuevo usuario
                             /usuarios/ID_USUARIO
-                                            GET     ME da la info del usuario
-                                            PUT     Modifico el usuario
+                                            GET     ME da la info del usuario **
+                                            PUT     Modifico el usuario       **
                                             DELETE  Borro el usuario
 
 https://miservidor/api/v2/
