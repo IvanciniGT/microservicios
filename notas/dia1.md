@@ -176,3 +176,39 @@ Dar de alta una dependencia en el POM!
 Jenkins
 Update repo git -> Que se empaquete todos los proyectos de una en auto.
 Y que te haga el despliegue!
+
+
+----
+Servicio de usuarios:
+
+Clase Usuario : Entity (jpa)                                            MODELO
+- Nombre
+- Correo
+- Password
+
+RepositorioUsuarios: JpaRepository (jpa)
+
+    List<Usuario> getAll();
+
+Exponer esta funcionalidad en forma de un servicio WEB: Controlador     CONTROLADOR
+
+ControladorUsuarios   <    RepositorioUsuario
+    endpoints REST
+        recuperarTodos
+        borrarUno
+        Alta
+        recuperarUno
+        modificarUno
+
+
+
+Json -> que se genera en automático                                     VISTA
+
+SPRINGBOOT < SPRING 
+
+Spring es un framework que ofrece:
+- Inversión de Control: Spring es el que controla el flujo de ejecución de mi programa ****
+                        Spring es quien crea clases, quién borra clases
+                        Spring es quien llama a las funciones
+- Al ser Spring quien crea las instancias de las clases,
+  En el contructor suministrará automáticamente TODOS los objetos que yo haya definido. ESTO ME OFRECE INYECCION DE DEPENDENCIAS
