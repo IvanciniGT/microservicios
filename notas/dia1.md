@@ -212,3 +212,34 @@ Spring es un framework que ofrece:
                         Spring es quien llama a las funciones
 - Al ser Spring quien crea las instancias de las clases,
   En el contructor suministrará automáticamente TODOS los objetos que yo haya definido. ESTO ME OFRECE INYECCION DE DEPENDENCIAS
+
+
+---
+Spring se basa en el concepto de Inversión de control
+
+                                        proyecto
+                    |-------------------------------------------------------------------------|
+CLIENTE --->            CONTROLADOR     --->    REPOSITORIO                --->     MODELOS
+                        expone servicios        controla persistencia
+                                                modelos
+
+                                                                                    User
+                                                                                    Si hago un cambio en el modelo... estoy debería quedar contenido a nivel del proyecto
+
+                        GET /users
+                        <- Modelo User
+
+
+                        v1 del servicio
+
+                        v2 del servicio
+
+                                                                                        telefono
+
+
+        Aplicacion 1 : Gestión de expedientes de formación
+                        De uso interno de la casa
+                            Haces aquí un cambio, para meter datos nuevos en el expediente  v2
+                            Sigo ofreciendo una version 1 del servicio
+                                            ^
+        Aplicacion 2 : Consultar a un proveedor el estado de un expediente de formación
