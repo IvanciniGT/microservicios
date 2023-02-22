@@ -243,3 +243,45 @@ CLIENTE --->            CONTROLADOR     --->    REPOSITORIO                ---> 
                             Sigo ofreciendo una version 1 del servicio
                                             ^
         Aplicacion 2 : Consultar a un proveedor el estado de un expediente de formación
+
+
+
+
+JSON:
+
+JS Javascript
+ON Object Notation
+
+---
+true
+---
+4
+---
+"hola"
+---
+["hola1","adios2"]
+---
+tabla = {
+    "clave1": "valor1",
+    "clave2": "valor2",
+}
+---
+Map<String,String> tabla=new HashMap<>();
+tabla.put("clave1", "valor1");
+tabla.put("clave2", "valor2");
+
+---
+[
+    {
+        "clave1": "valor1",
+        "clave2": "valor2",
+    },
+    {
+        "clave1": "valor1",
+        "clave2": "valor2",
+    }
+]
+
+
+xml
+    XPATH
