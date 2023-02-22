@@ -63,3 +63,25 @@ Requisito: Servicio de usuarios
   Escenario: Recuperar usuario que no existe
     Cuando invoco al servicio "/v1/users/111" con método "GET"
     Entonces se recibe una respuesta con código "NOT FOUND"
+
+  Esquema del escenario: Alta de usuarios
+    Dado un objeto JSON
+    Y el objeto JSON tiene el campo "name", con valor "<nombre>"
+    Y el objeto JSON tiene el campo "password", con valor "<password>"
+    Y el objeto JSON tiene el campo "email", con valor "<email>"
+    Cuando invoco al servicio "/v1/users" con método "POST"
+    Entonces se recibe una respuesta con código "CREATED"
+    Y la respuesta devuelve un JSON
+
+    Y que debe tener por "name": "<nombre>"
+    Y que debe tener por "password": "<password>"
+    Y que debe tener por "email": "<email>"
+
+    Cuando invoco al servicio "/v1/users" con método "GET"
+    Entonces se recibe una respuesta con código "OK"
+    Y la respuesta contiene un array JSON de longitud <cantidad>
+
+    Ejemplos:
+      | nombre   | password   | email            | cantidad |
+      | Viçens   | password1  | viçens@gmail.com | 3        |
+      | Marta    | password2  | marta@gmail.com  | 4        |

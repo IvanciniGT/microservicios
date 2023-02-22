@@ -9,6 +9,8 @@ import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsCollectionWithSize;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
@@ -43,6 +45,7 @@ public class UserSteps {
 
     private final MockMvc cliente;
     private User user;
+    private JSONObject objetoJson;
     private final UserRepository userRepository;
     private ResultActions respuesta;
 
@@ -51,6 +54,15 @@ public class UserSteps {
         this.cliente = cliente;
     }
 
+    @Given("un objeto JSON")
+    public void unJson() {
+        objetoJson = new JSONObject();
+    }
+
+    @Given("el objeto JSON tiene el campo {string}, con valor {string}")
+    public void conElCampoConValor(String campo,String valor) throws JSONException {
+        objetoJson.put(campo, valor);
+    }
     @Given("un usuario")
     public void unUsuario() {
         user = new User();
@@ -84,6 +96,12 @@ public class UserSteps {
             case "DELETE":
                 respuesta=this.cliente.perform( MockMvcRequestBuilders.delete(endpoint) );
                 break;
+            case "POST":
+                respuesta=this.cliente.perform( MockMvcRequestBuilders.post(endpoint)
+                                                                      .contentType("application/json")
+                                                                      .content(objetoJson.toString())
+                                              );
+                break;
         }
     }
 
@@ -95,6 +113,9 @@ public class UserSteps {
                 break;
             case "NOT FOUND":
                 respuesta.andExpect(status().isNotFound());
+                break;
+            case "CREATED":
+                respuesta.andExpect(status().isCreated());
                 break;
         }
     }
