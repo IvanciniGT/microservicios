@@ -285,3 +285,75 @@ tabla.put("clave2", "valor2");
 
 xml
     XPATH
+
+
+
+
+Tenemos un proyecto con el API de Usuarios
+
+Queremos otro proyecto con el API Tareas
+
+Las tareas están relacionadas con los Usuarios?
+
+Que sean proyectos TOTALMENTE INPENDIENTES o NO. 
+
+Una cosa es el API REST y otra cosa es la gestión de los objetos que hay por debajo.
+
+Nuestro API de usuarios es muy sencillo, no tiene LOGICA 
+
+Qué consideraríamos lógica?
+
+
+EXPOSICION
+
+LOGICA
+    Mandar un email
+    Mandar un sms
+MODELO
+
+Toda mi gestión de usuarios es algo reutilizable para otros proyectos que no sean el de tareas?
+
+
+Servicio REST para autenticación y datos del usuario y permisos
+
+Quiero crear un expediente en mi app , ya que mi app es de gestión de expedientes
+
+Y en algún momento un expediente lo vincularé a un usuario: PROPIETARIO, ADMINISTRATIVO, Consultar
+
+BBDD
+    TABLA Expedientes
+    Alguna información del usuario: NOMBRE 
+
+MODELO:
+    Usuario                     = Caso que teneis en pantalla de nuestro proyecto. Qué cambia EL REPOSITORIO, que nos BBDD
+        getEmail()
+        getNombreCompleto()
+                                    Un repo muy simplon, ya que solo admite GET . No es un repo CRUD
+
+
+Proyectos:
+
+    Modelo:
+        Modelo Usuarios             - PROYECTO 1
+        Modelo Tareas/Expedientes   - PROYECTO 2 (que tiene depedencias con PROYECTO 1)
+
+    API REST:       SPRING-BOOT
+        Usuarios                    - PROYECTO 3
+        Expedientes/Tareas          - PROYECTO 5
+
+    
+    Front-end
+        Pantalla: 
+            Datos de un usuario: <COMPONENTE WEB>           <usuario id="19283781">     ---> API REST usuarios      - PROYECTO 4
+            Datos de un expediente <COMPONENTE WEB>         <expediente id=2938474">    ----> API REST exp          - PROYECTO 6
+            Modificar datos de un expediente <COMPONENTE WEB>    <modificarexpediente id=2938474">    ----> API REST exp - PROYECTO 7
+            
+                WEB COMPONENTS: **Angular**, ****React****, Vue, Polymer
+
+                        LitElement
+
+                JS
+
+
+Kotlin es un lenguaje de programación nuevo que compila a fichero byte-code -> Se ejecutan dentro de una JVM
+Scala

@@ -1,8 +1,7 @@
 package com.curso.userapi;
 
-import com.curso.userapi.models.User;
-import com.curso.userapi.repositories.UserRepository;
-import io.cucumber.java.en.And;
+import es.curso.modelo.models.User;
+import es.curso.modelo.repositories.UserRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -23,9 +22,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -98,9 +94,15 @@ public class UserSteps {
                 break;
             case "POST":
                 respuesta=this.cliente.perform( MockMvcRequestBuilders.post(endpoint)
-                                                                      .contentType("application/json")
-                                                                      .content(objetoJson.toString())
-                                              );
+                        .contentType("application/json")
+                        .content(objetoJson.toString())
+                );
+                break;
+            case "PUT":
+                respuesta=this.cliente.perform( MockMvcRequestBuilders.put(endpoint)
+                        .contentType("application/json")
+                        .content(objetoJson.toString())
+                );
                 break;
         }
     }

@@ -85,3 +85,31 @@ Requisito: Servicio de usuarios
       | nombre   | password   | email            | cantidad |
       | Viçens   | password1  | viçens@gmail.com | 3        |
       | Marta    | password2  | marta@gmail.com  | 4        |
+
+  Esquema del escenario: Modificar usuario que existe
+    Dado un objeto JSON
+    Y el objeto JSON tiene el campo "name", con valor "<nombre>"
+    Y el objeto JSON tiene el campo "password", con valor "<password>"
+    Y el objeto JSON tiene el campo "email", con valor "<email>"
+    Cuando invoco al servicio "/v1/users/2" con método "PUT"
+
+    Entonces se recibe una respuesta con código "OK"
+
+    Y la respuesta devuelve un JSON
+    Y que debe tener por "name": "<nombre>"
+    Y que debe tener por "password": "<password>"
+    Y que debe tener por "email": "<email>"
+
+    Ejemplos:
+      | nombre      | password       | email                |
+      | SuperXavi   | superpassword  | super.xavi@gmail.com |
+
+
+  Escenario: Modificar usuario que no existe
+    Dado un objeto JSON
+    Y el objeto JSON tiene el campo "name", con valor "RUINA"
+    Y el objeto JSON tiene el campo "password", con valor "RUINA"
+    Y el objeto JSON tiene el campo "email", con valor "RUINA"
+    Cuando invoco al servicio "/v1/users/1111" con método "PUT"
+
+    Entonces se recibe una respuesta con código "NOT FOUND"

@@ -1,6 +1,6 @@
-package com.curso.userapi.repositories;
+package es.curso.modelo.repositories;
 
-import com.curso.userapi.models.User;
+import es.curso.modelo.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

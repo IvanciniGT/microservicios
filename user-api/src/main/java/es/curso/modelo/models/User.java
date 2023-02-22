@@ -1,4 +1,4 @@
-package com.curso.userapi.models;
+package es.curso.modelo.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,10 +1,10 @@
 package com.curso.userapi.controller;
 
 import com.curso.userapi.mappers.UserMappers;
-import com.curso.userapi.models.User;
+import es.curso.modelo.models.User;
 import com.curso.userapi.pojo.UserDataInputV1;
 import com.curso.userapi.pojo.UserDataOutputV1;
-import com.curso.userapi.repositories.UserRepository;
+import es.curso.modelo.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

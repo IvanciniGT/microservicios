@@ -1,6 +1,6 @@
 package com.curso.userapi.mappers;
 
-import com.curso.userapi.models.User;
+import es.curso.modelo.models.User;
 import com.curso.userapi.pojo.UserDataInputV1;
 import com.curso.userapi.pojo.UserDataOutputV1;
 
