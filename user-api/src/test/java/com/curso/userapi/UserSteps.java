@@ -56,15 +56,15 @@ public class UserSteps {
         user = new User();
     }
 
-    @Given("con el nombre {string}")
+    @Given("el usuario tiene por nombre {string}")
     public void conElNombre(String nombre) {
         user.setName(nombre);
     }
-    @Given("con el password {string}")
+    @Given("el usuario tiene por password {string}")
     public void conElPassword(String password) {
         user.setPassword(password);
     }
-    @Given("con el email {string}")
+    @Given("el usuario tiene por email {string}")
     public void conElEmail(String email) {
         user.setEmail(email);
     }
@@ -115,12 +115,11 @@ public class UserSteps {
     @Then("el elemento en la posición {int}, debe tener por {string}: {string}")
     public void elElementoEnLaPosiciónPosicionDebeTenerPorNombre(int posicion, String campo, String valor) throws Exception {
         respuesta.andExpect(jsonPath("$["+posicion+"]."+campo             , Matchers.is(valor)));
-        //"$[0].name"
+                                                //"$[0].name"
     }
     @Then("que debe tener por {string}: {string}")
     public void queDebeTenerPor(String campo, String valor) throws Exception {
         respuesta.andExpect(jsonPath("$."+campo             , Matchers.is(valor)));
-        //"$[0].name"
     }
 
 
