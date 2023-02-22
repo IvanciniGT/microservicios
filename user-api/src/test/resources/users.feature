@@ -1,4 +1,4 @@
-# Feature: Servicio de usuarios
+Feature: Servicio de usuarios
 
   Background:
     Given un usuario con los datos

@@ -1,6 +1,11 @@
 package com.curso.userapi;
 
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 public class UserSteps {
+
     @Given("^un usuario con los datos$")
     public void unUsuarioConLosDatos() {
         // Dar de alta un usuario en el repositorio

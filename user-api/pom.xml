@@ -18,28 +18,10 @@
 
     <properties>
         <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <io.cucumber.version>7.4.1</io.cucumber.version>
+        <org.junit.version>5.8.2</org.junit.version>
     </properties>
-
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-bom</artifactId>
-                <version>${io.cucumber.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>${org.junit.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
     <dependencies>
 
@@ -72,22 +54,25 @@
 
 
         <!-- Dependencias para Cucumber y pruebas unitarias-->
-        <dependency>    <!--Libreria básica cucumber-->
+
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
+            <version>${io.cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency> <!--Integrar cucumber con Spring. Nos da Mocks-->
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-spring</artifactId>
+            <version>${io.cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency> <!-- para usar Junit5 - Jupiter -->
+        <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${io.cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--Las librerias de Junit-->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
@@ -96,6 +81,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+            <version>${org.junit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -106,9 +92,9 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+            <version>${org.junit.version}</version>
             <scope>test</scope>
         </dependency>
-
 
     </dependencies>
 
