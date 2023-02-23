@@ -377,3 +377,34 @@ Metodologías ágiles: Manifiesto ágil
 SCRUM / Xtreme programing
 
 Entregar el producto de forma incremental !
+
+
+----
+
+Node es el equivalente a la JVM
+
+En un interprete de JS
+
+Es el motor/interprete de JS que había dentro del navegador Chromium (Proyecto opensource > Chrome + Edge, Opera, Safari) // Firefox
+
+Visual Studio Code está desarrollado en JS: Linux, Windows, MacOS, Navegador
+
+---
+Nuestros proyectos, REACTJS, van a ser proyectos que van a correr dentro de un navegador.
+Es decir, para ejecutarlos no necesitamos Node.... para nada
+
+El proyecto al final dará lugar a un fichero .js
+
+Que pondremos en un servidor web, el que queramos (incluso, dentro de tomcat o de wildfly)
+
+Mientras desarrollamos, Node nos va a ser muy cómodo como servidor donde alojar los js y servirlos al navegador.
+
+npx ~ npm 
+
+npm  = Equivalente en el mundo JS a maven:
+- TypeScript transpila a JS plano (sin tipos)
+- Empaqueta el proyecto -> .js final
+- Gestionar dependencias.
+
+
+SPA: Single page application

@@ -2,7 +2,7 @@ package com.curso.userapi.controller;
 
 import com.curso.modelo.userservice.UserService;
 import com.curso.userapi.mappers.UserMappers;
-import com.curso.modelo.models.User;
+import com.curso.models.User;
 import com.curso.userapi.pojo.UserDataInputV1;
 import com.curso.userapi.pojo.UserDataOutputV1;
 import org.springframework.http.HttpStatus;

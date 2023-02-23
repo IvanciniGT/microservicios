@@ -1,7 +1,7 @@
 package com.curso.userapi;
 
-import com.curso.modelo.models.User;
-import com.curso.modelo.repositories.UserRepository;
+import com.curso.models.User;
+import com.curso.repositories.UserRepository;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

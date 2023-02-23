@@ -1,6 +1,6 @@
 package com.curso.modelo.userservice.mappers;
 
-import com.curso.modelo.models.User;
+import com.curso.models.User;
 import com.curso.modelo.userservice.pojo.UserDataInput;
 
 public interface UserMappers {

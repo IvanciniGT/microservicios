@@ -91,12 +91,7 @@
             <version>${org.junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.curso</groupId>
-            <artifactId>user-model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
+        <!-- Servicio de usuriaos -->
         <dependency>
             <groupId>com.curso</groupId>
             <artifactId>user-service</artifactId>

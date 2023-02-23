@@ -1,4 +1,4 @@
-package com.curso.modelo.models;
+package com.curso.models;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,9 +6,13 @@ import lombok.Setter;
 
 @Entity
 @Table(
-        name = "Usuarios"
+        name = "Tareas"
 )
-public class User {
+public class Task {
+
+    public enum Status {
+        PENDING, IN_PROGRES, COMPLETED
+    }
 
     @Getter
     @Setter
@@ -24,12 +28,13 @@ public class User {
 
     @Getter
     @Setter
-    @Column(length = 100, nullable = false)
-    private String email;
+    @Column(nullable = false)
+    private Status status = Status.PENDING;
 
     @Getter
     @Setter
-    @Column(length = 50, nullable = false)
-    private String password;
+    @ManyToOne
+    @JoinColumn(nullable = false, updatable = false)
+    private TaskList taskList;
 
 }

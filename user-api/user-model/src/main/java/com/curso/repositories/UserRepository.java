@@ -1,6 +1,6 @@
-package com.curso.modelo.repositories;
+package com.curso.repositories;
 
-import com.curso.modelo.models.User;
+import com.curso.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

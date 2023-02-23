@@ -1,7 +1,7 @@
 package com.curso.modelo.userservice;
 
-import com.curso.modelo.models.User;
-import com.curso.modelo.repositories.UserRepository;
+import com.curso.models.User;
+import com.curso.repositories.UserRepository;
 import com.curso.modelo.userservice.mappers.UserMappers;
 import com.curso.modelo.userservice.pojo.UserDataInput;
 import org.springframework.stereotype.Service;

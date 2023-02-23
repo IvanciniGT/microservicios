@@ -23,6 +23,7 @@
         <module>user-service</module>
         <module>user-api</module>
         <module>backend</module>
+        <module>tasklists-model</module>
     </modules>
 
 </project>
