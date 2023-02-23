@@ -357,3 +357,23 @@ Proyectos:
 
 Kotlin es un lenguaje de programación nuevo que compila a fichero byte-code -> Se ejecutan dentro de una JVM
 Scala
+
+
+---
+
+App frontal WEB : 50 pantallas
+    Gestión
+    Consulta publica
+
+Cambio en el sistema... añades unos campos por ahí
+
+Los has añadido en el modelo del expediente
+    De momento cambias el formulario de alta del frontal.. pero no quieres tener que cambiar TODAS las otras 49 pantallas
+    para que la gente ya pueda ir usando esta funcionalidad
+
+---
+
+Metodologías ágiles: Manifiesto ágil 
+SCRUM / Xtreme programing
+
+Entregar el producto de forma incremental !
