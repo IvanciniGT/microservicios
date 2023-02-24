@@ -1,9 +1,9 @@
-package com.curso.userapi.pojo;
+package com.curso.userapi.v2.pojo;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class UserDataOutputV1  extends UserDataInputV1{
+public class UserDataOutputV2 extends UserDataInputV2 {
 
     @Getter
     @Setter

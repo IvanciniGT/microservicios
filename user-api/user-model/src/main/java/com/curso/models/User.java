@@ -10,6 +10,10 @@ import lombok.Setter;
 )
 public class User {
 
+    public enum Genero {
+        Hombre, Mujer, NoBinario, Desconocido
+    }
+
     @Getter
     @Setter
     @Id
@@ -19,7 +23,7 @@ public class User {
 
     @Getter
     @Setter
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, updatable = false)
     private String name;
 
     @Getter
@@ -31,5 +35,10 @@ public class User {
     @Setter
     @Column(length = 50, nullable = false)
     private String password;
+
+    @Getter
+    @Setter
+    @Column(nullable = false)
+    private Genero genero = Genero.Desconocido;
 
 }

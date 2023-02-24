@@ -1,10 +1,10 @@
-package com.curso.modelo.userservice.pojo;
+package com.curso.userapi.v2.pojo;
 
 import com.curso.models.User;
 import lombok.Getter;
 import lombok.Setter;
 
-public class UserDataInput {
+public class UserDataInputV2 {
 
     @Getter
     @Setter

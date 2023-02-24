@@ -1,9 +1,9 @@
-package com.curso.userapi.mappers;
+package com.curso.userapi.v1.mappers;
 
 import com.curso.models.User;
 import com.curso.modelo.userservice.pojo.UserDataInput;
-import com.curso.userapi.pojo.UserDataInputV1;
-import com.curso.userapi.pojo.UserDataOutputV1;
+import com.curso.userapi.v1.pojo.UserDataInputV1;
+import com.curso.userapi.v1.pojo.UserDataOutputV1;
 
 public interface UserMappers {
 
@@ -12,6 +12,7 @@ public interface UserMappers {
         usuario.setName(userData.getName());
         usuario.setPassword(userData.getPassword());
         usuario.setEmail(userData.getEmail());
+        usuario.setGenero(User.Genero.Desconocido);
         return usuario;
 
     }

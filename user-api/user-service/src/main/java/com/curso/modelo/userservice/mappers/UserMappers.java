@@ -9,6 +9,7 @@ public interface UserMappers {
         usuario.setName(userData.getName());
         usuario.setPassword(userData.getPassword());
         usuario.setEmail(userData.getEmail());
+        usuario.setGenero(userData.getGenero());
         return usuario;
     }
 

@@ -17,7 +17,7 @@ class User extends React.Component{
         this.setState({"extendido": !this.state["extendido"]});
     }
 
-  render() {
+  render() { //JSX
     return (
         <div className={ `User ${ this.state["extendido"] && "extendido" || "" }`}>
             <img onClick={this.cambiarModo.bind(this)} className={ `Foto ${ this.state["extendido"] && "extendido" || "" }`} src={foto}/>

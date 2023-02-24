@@ -1,5 +1,6 @@
-package com.curso.userapi.pojo;
+package com.curso.userapi.v1.pojo;
 
+import com.curso.models.User;
 import lombok.Getter;
 import lombok.Setter;
 

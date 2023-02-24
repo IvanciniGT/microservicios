@@ -408,3 +408,49 @@ npm  = Equivalente en el mundo JS a maven:
 
 
 SPA: Single page application
+
+
+
+
+----
+
+
+Expedientes
+
+Alta de un expediente:
+Nombre,
+Personas....
+Otros datos
+
+
+Fecha de creación       Es de salida / no de entrada
+Fecha de modificación   Es de salida / no de entrada
+Id                      Es de salida / no de entrada
+Estado                  Es de salida / no de entrada
+
+
+-----
+                        INFORMATICA 
+                        Logica                                                  Datos
+CAPA 3 - Cliente
+         COMPONENTE WEB
+         Programa exportación BBDD (Datawarehouse)
+            VVVVVVV
+
+CAPA 2 - EXPOSICION funcionalidad
+                        Controlador REST (API) v1
+                            Devolver usuario                                    Vista del modelo2_v1 (User)
+                            Alta usuario                                                        Datos nuevo Usuario 2_v1
+                            Modificar usuario                                                               Datos modificar Usuario 2_v1
+                        Controlador REST (API) v2
+                            Devolver usuario                                    Vista del modelo2_v2 (User)
+                            Alta usuario                                                        Datos nuevo Usuario 2_v2
+                            Modificar usuario                                                               Datos modificar Usuario 2_v2
+CAPA 1 - LOGICA NEGOCIO
+                        Servicio                                                     
+                            Devolver usuario                                    Vista del modelo (User)
+                            Alta usuario                                                        Datos nuevo Usuario 
+                            Modificar usuario                                                               Datos modificar Usuario 
+CAPA 0 - MODELO
+                        Repositorio                                             User * Campo nuevo
+                        Gestión (CRUD)
