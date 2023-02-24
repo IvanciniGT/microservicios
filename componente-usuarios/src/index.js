@@ -7,9 +7,7 @@ import User from './User';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <User id="1"/>
-      <User id="2" />
-      <User id="3" />
+      <User id="2"/>
   </React.StrictMode>
 );
 

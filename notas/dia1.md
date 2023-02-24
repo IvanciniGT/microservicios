@@ -454,3 +454,90 @@ CAPA 1 - LOGICA NEGOCIO
 CAPA 0 - MODELO
                         Repositorio                                             User * Campo nuevo
                         Gestión (CRUD)
+
+
+
+Promesa
+
+Promise (JS) = Future (JAVA)
+
+Este objeto lo manejamos cuando invocamos una función ASINCRONA
+---
+HILO MAIN EN EJECUCION
+1- Imprimir algo por pantalla:                                                                  BIENVENIDO
+2- Llamar a una función asincronamente (llamar a un servicio HTTP y obtener una respuesta)      funcionLlamarAlServicio (CALLBACK)
+3- Imprimir otra cosa por pantalla                                                              ESPERANDO DATOS DEL USUARIO....
+
+funcion CALLBACK(){
+    pinta los datos que hemos pedido
+}
+
+funcionLlamarAlServicio( FUNCION CALLBACK ){
+    Abre un hilo Paralelo 1 que hará sus cositas (FUNCION CALLBACK)
+}
+
+HILO PARALELO 1
+    hace la peticion
+    EJECUTE LA FUNCION CALLBACK
+---
+
+
+HILO MAIN EN EJECUCION
+1- Imprimir algo por pantalla:                                                                  BIENVENIDO
+2- Llamar a una función asincronamente (llamar a un servicio HTTP y obtener una respuesta)      funcionLlamarAlServicioConPromesa()
+   Obtengo como resultado una promesa
+3- Imprimir otra cosa por pantalla                                                              ESPERANDO DATOS DEL USUARIO....
+
+
+    4- while (promesa not RESUELTA)... espera
+    5- pinta los datos que hemos pedido                                                             ESTOS SON LOS DATOS DEL USUAIRO 
+        Los saco de la promesa
+
+    Normalmente las promesas ofrecen una funcion THEN
+
+funcionLlamarAlServicioConPromesa(  ){
+    Creo una promesa
+    Abre un hilo Paralelo 1 que hará sus cositas (promesa)
+    Devuelvo la Promesa/Futuro
+}
+HILO PARALELO 1
+    hace la peticion
+    pone en la promesa:
+        valor: ASIGNADO
+        RESUELTA: TRUE
+
+class Promesa(){
+    Boolean RESUELTA
+    Object valor
+
+    then( CALLBACK )
+    set(RESUELTA=TRUE) -> Llamar a la función de CALLBACK
+}
+
+
+
+
+PANTALLA PRINCIPAL DE LA APLICACION
+
+    Mostrando una lista de usuarios
+        Y en un usuario hacen click para editarlo
+            Y el componente del usuario cambia su representación para mostrar un formulario
+            Pero por este usuario entrar en modo de edición... que pasa con el resto de componentes usuario?
+                A lo mejor quiero desactivar en ellos la opción de editar
+
+Vamos a tener un ESTADO a nivel de la aplciación (que es otra tabla HASH -> otro Object {} )            REDUX
+    ID en Edición : 1
+------------
+                Usuario 1
+                    | Ivan            |        GUARDAR CANCELAR                           ESTADO LOCAL: Modo edicion: ON
+                Usuario 2
+                    Marta                                                                 ESTADO LOCAL: Modo edicion: DISABLED
+
+
+                Cada componente tiene 3 modos de edición: ON OFF DISABLED
+------------
+
+
+PANTALLA PRINCIPAL DE LA APLICACION
+    Mostrando una lista de usuarios
+        Y en un usuario hacen click para editarlo -> Llamar a otro HTML que genera un formulario 
