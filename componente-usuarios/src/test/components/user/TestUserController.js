@@ -1,4 +1,4 @@
-class UserTestData {
+class TestUserController {
 
     static usuarios= {
         "1" : {
@@ -19,14 +19,14 @@ class UserTestData {
         },
     };
     static getDatos(id){
-        return UserTestData.usuarios[id];
+        return TestUserController.usuarios[id];
     }
 }
 
 
 
 export async function getUserData(id, funcionParaMandarDatosUsuario ) {
-    setTimeout(  () =>   funcionParaMandarDatosUsuario(    UserTestData.getDatos(id)    )   ,2000   );
+    setTimeout(  () =>   funcionParaMandarDatosUsuario(    TestUserController.getDatos(id)    )   ,2000   );
 }
 
 

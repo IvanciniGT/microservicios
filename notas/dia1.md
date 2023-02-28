@@ -541,3 +541,71 @@ Vamos a tener un ESTADO a nivel de la aplciación (que es otra tabla HASH -> otr
 PANTALLA PRINCIPAL DE LA APLICACION
     Mostrando una lista de usuarios
         Y en un usuario hacen click para editarlo -> Llamar a otro HTML que genera un formulario 
+
+------------
+
+
+<user id="23">
+
+
+User.js                 Qué hace?                                                   Cuando se llama?
+    Constructor         Creo el componente en memoria                               Al usar la marca <user>
+                        Y haré las cosas que me interesen
+                        Los atributos HTML llegan al contructor como argumento props
+                        Desde este momento, dentro de la clase son accesibles mediante this.props
+
+                        Aqui puedo crear mis propias variables asociadas a esta instancia de User
+
+                        Aquí puedo también crear una variable muy especial llamada this.state
+
+    componentDidMount                                                               El elemento es pinchado dentro del HTML
+                        Y haré las cosas que me interesen
+                        Desde este momento, tengo a mi disposición la función this.setState() SIN DATOS DE USUARIO
+                            para realizar un cambio en el state... y por ende que se invoque en automatico al render
+                        EN PARALELO : Solicito la carga de los datos del usuario.. y cuando estén cargados? 
+                                Los quiero poner en el estado... pero esto es en paralelo (asíncrono)
+                                Que me llamen a la función datosCargados, pasandome los datos del usuario
+    datosCargados(datos)
+                        Meto los datos en el estado
+
+    render              Devuelve el HTML que se debe mostrar en el navegador        Una vez al pincharse el elemento dentro del HTML
+                                                                                    Cada vez que cambia el this.state
+
+                        Mostramos el nombre del usuario... siempre??? Cuando están cargados
+                        Donde guardo esos datos? En el state
+                        Y si no están cargados? Muestro CARGANDO
+
+
+State:
+- datos usuario
+- modo visualizacion
+
+state en JS(React) lo almacenamos en la variable this.state
+Qué es esa variable?
+{   <<<< Este objeto es el state... que estará ubicado en una determinada posición de memoria... El equivalente a un MAP de java
+    "datosUsuario": {
+        "name": "Ivan",
+        "email": "ivan.osuna.ayuste@gmail.com"
+    },
+    "extendido": true
+}
+
+Como resolvemos esta situación? 
+
+Generando un nuevo estado con los datos de interés cambiados.
+{   <<<< Este objeto es el state... que estará ubicado en una determinada posición de memoria... El equivalente a un MAP de java
+    "datosUsuario": {
+        "name": "Ivan",
+        "email": "ivan.osuna.ayuste@gmail.com"
+    },
+    "extendido": false
+}
+
+
+Comunicacion entre componentes:
+
+De padre a hijo: Mediante 
+De hijo a padre: Mediante funciones de callback
+
+Entre componentes independientes: Con un estado global (REDUX)
+

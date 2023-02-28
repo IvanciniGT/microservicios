@@ -24,3 +24,14 @@
 .User div {
   margin: 5px;
 }
+.botones {
+  float:right;
+  display: block;
+}
+.boton {
+  margin-right: 20px;
+  border: solid 1px black;
+  font-size: 0.5em;
+  padding: 5px;
+  cursor: pointer;
+}
