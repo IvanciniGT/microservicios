@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import User from './User';
+import User from './components/user/User';
 //import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <User id="2"/>
+      <User id="3"/>
+      <User id="4"/>
   </React.StrictMode>
 );
 
