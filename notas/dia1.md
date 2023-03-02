@@ -609,3 +609,24 @@ De hijo a padre: Mediante funciones de callback
 
 Entre componentes independientes: Con un estado global (REDUX)
 
+-------
+
+
+Web component: User
+- Mostrar los datos de un usuario, en distintos formatos
+- Modificar los datos de un usuario
+- Alta? NOP
+- Baja? Me puede interesar tener un botón delete....
+  Que haga qué? La baja de un usuario? SIEMPRE? NO
+
+---
+Más chulo va a ser esto!
+
+----
+App1 en la que voy a meter el componente:
+- App que gestiona sus propios usuarios... y los doy de alta y de baja
+  En ella, el botón borrar, podría interesarme que borre el usuario.
+
+App2 (que podría ser la misma app1).... Tengo una pantalla llamada: Expediente.
+En ella, me muestra los datos de un expediente y los usuarios asignados a su tramitación.
+Qué haría en esa pantalla el botón borrar? Desasignar al usuario del expediente

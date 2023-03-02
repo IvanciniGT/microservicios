@@ -1,43 +1,10 @@
 import foto from './resources/persona.png';
 import './User.css';
 import React from "react"
-import PropTypes from "prop-types";
-import {getUserData} from "../../test/components/user/TestUserController"
-import UserState from "./UserState";  //"./UserController"; // Equivalente a un import static de java
+import UserComponentLogic from "./UserComponentLogic";  //"./UserController"; // Equivalente a un import static de java
 
-class User extends React.Component{
+class User extends UserComponentLogic{
 
-    constructor(props){
-        super(props);
-        //this.datos = UserTestData.getDatos(props.id);
-        // El día de mañana, habrá que cambiar l linea anterior, por una llamada a un servicio web, que devuelva ese JSON
-        this.state=UserState.defaultState();
-    }
-    componentDidMount() {
-        //getUserData(this.props.id, this.nuevosDatosUsuario );
-        //getUserData(this.props.id, this.nuevosDatosUsuario.bind(this) );
-        getUserData(this.props.id, (datos)=> this.nuevosDatosUsuario(datos) );
-    }
-
-    nuevosDatosUsuario(datosUsuario){
-        this.setState( UserState.updateUserData(this.state, datosUsuario) );
-    }
-
-    cambiarModo(){
-        this.setState(UserState.updateVisualizationMode(this.state, !this.state["extendido"] ));
-    }
-
-    iniciarEdicion(){
-        this.setState(UserState.updateEnEdicion(this.state, true ));
-    }
-    guardarCambios() {
-        // Recopilar los datos nuevos y mandarlos al CONTROLADOR, para que los mande al servicio
-        this.setState(UserState.updateEnEdicion(this.state, false ));
-    }
-    cancelarCambios() {
-        // Restaurar valores anteriores
-        this.setState(UserState.updateEnEdicion(this.state, false ));
-    }
     render() { //JSX
 
         // 2 == "2"        <- true     // El tipo no se comprueba (se hace un autoconversión de tipos)
@@ -58,7 +25,7 @@ class User extends React.Component{
             if (this.state["editable"]) {
                 if (!this.state["enEdicion"]) {
                     botones = <span className="botones">
-                                    <span className="boton" onClick={this.iniciarEdicion.bind(this)}>EDITAR</span>
+                                    { this.props.updateMode && <span className="boton" onClick={this.iniciarEdicion.bind(this)}>EDITAR</span> }
                               </span>
                 } else {
                     editable = true;
@@ -97,9 +64,6 @@ class User extends React.Component{
 
 }
 
-User.propTypes={
-    id: PropTypes.string.isRequired
-}
 export default User;
 
 // Al usar una marca User, se crea una instancia de esta clase.

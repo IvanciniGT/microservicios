@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import User from './components/user/UserView';
+import User from './components/user/UserComponentView';
+import UserList from "./components/userlist/UserListComponentView";
 //import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -10,6 +11,10 @@ root.render(
       <User id="2"/>
       <User id="3"/>
       <User id="4"/>
+
+      <br/><br/><br/><br/><br/><br/><br/>
+
+      <UserList></UserList>
   </React.StrictMode>
 );
 

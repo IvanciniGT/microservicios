@@ -1,4 +1,4 @@
-class UserState {
+class UserComponentState {
     static defaultState(){
         return {
             "extendido": false,
@@ -33,4 +33,4 @@ class UserState {
     }
 }
 
-export default UserState;
+export default UserComponentState;
