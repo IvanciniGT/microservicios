@@ -47,7 +47,7 @@ class UserComponentLogic extends React.Component{
     iniciarEdicion(){
         this.componentState.updateEnEdicion(true );
         if(this.props.onUpdateStart)
-            this.props.onUpdateStart(this.state.userData)
+            this.props.onUpdateStart(this.state.datosUsuario)
     }
     guardarCambios() {
         // Recopilar los datos nuevos y mandarlos al CONTROLADOR, para que los mande al servicio

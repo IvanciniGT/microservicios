@@ -14,7 +14,7 @@ class UserListComponentView extends UserListComponentLogic{
                     {this.state.datosUsuarios.map(datosUsuario =>
                         <div  key={datosUsuario.id}>
                             <User userData={datosUsuario}
-                                  editable={!this.props.usuarioEnEdicion || this.props.usuarioEnEdicion === datosUsuario }
+                                  editable={!this.props.usuarioEnEdicion || this.props.usuarioEnEdicion.id === datosUsuario.id }
                                   borrable={true}
                                   onDelete={(usuario)=>alert("borrando: " + usuario )}
                             ></User>
@@ -55,6 +55,6 @@ function mapStateToProps (state) {
 // Extender la clase
 const UserList = connect(
     mapStateToProps,       // Lo que leo del store
-    ()=>{}) // Lo que modifico
+    ()=>({})) // Lo que modifico
     (UserListComponentView);
 export default UserList;

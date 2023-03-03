@@ -5,6 +5,7 @@ const estadoInicial = {
 }
 
 export function UserReducer (state = estadoInicial, action) {
+    console.log(action)
     switch(action.type){
         case USUARIOS_EN_EDICION_ACTIONS.ASIGNAR_USUARIO :
             return {

@@ -104,15 +104,15 @@ class UserComponentView extends UserComponentLogic{
 // REDUX
 
 function mapDispatchToProps (dispatch) {
-    return {
+    return ({
         onUpdateStart: (usuario) => dispatch(AsignarUsuarioEnEdicion(usuario)) ,
         onUpdateEnd: () => dispatch(DesasignarUsuarioEnEdicion())
-    }
+    })
 }
 
 
 const User = connect(
-    ()=>{}, // Lo que leo del store
+    ()=>({}), // Lo que leo del store
     mapDispatchToProps)    // Escribir en el store
     (UserComponentView);
 
