@@ -10,51 +10,86 @@ class User extends UserComponentLogic{
         // 2 == "2"        <- true     // El tipo no se comprueba (se hace un autoconversión de tipos)
         // 2 === "2"       <- false    // El tipo no es el mismo
 
-        if(this.state["datosUsuario"] === undefined )
+        if(this.state["datosUsuario"] === undefined ) {
             return (
                 <div className="User">
                     Cargando...
                 </div>
             );
-        else {
+        } else {
+            let extendido = this.state["extendido"]
             //////////////////////////////////////////////////////////////////////////////
             /// Botones para el modo edición
             //////////////////////////////////////////////////////////////////////////////
             let botones= ""
-            let editable = false;
-            if (this.state["editable"]) {
+            let enEdicion = false;
+            if (this.state.editable) {
                 if (!this.state["enEdicion"]) {
                     botones = <span className="botones">
-                                    { this.props.updateMode && <span className="boton" onClick={this.iniciarEdicion.bind(this)}>EDITAR</span> }
+                                    <span className="boton" onClick={this.iniciarEdicion.bind(this)}>EDITAR</span>
                               </span>
                 } else {
-                    editable = true;
+                    enEdicion = true;
                     // Estas dos lineas de abajo son iguales. Una con lambda y la otra con el bind
                     botones = <span className="botones">
                                     <span className="boton" onClick={  ()=>this.guardarCambios()        }>GUARDAR</span>
                                     <span className="boton" onClick={  this.cancelarCambios.bind(this)  }>CANCELAR</span>
                                 </span>
+                    extendido = true
+                }
+            }
+            //////////////////////////////////////////////////////////////////////////////
+            /// Botones para el modo borrado
+            //////////////////////////////////////////////////////////////////////////////
+            let botones_borrado = "";
+            if (this.props.borrable && !enEdicion) {
+                if (!this.state["enBorrado"] ) {
+                    botones_borrado = <span className="botones">
+                                    <span className="boton" onClick={this.iniciarBorrado.bind(this)}>BORRAR</span>
+                              </span>
+                } else {
+                    // Estas dos lineas de abajo son iguales. Una con lambda y la otra con el bind
+                    botones_borrado = <span className="botones">
+                                    <span className="boton" onClick={  ()=>this.confirmarBorrado()        }>CONFIRMAR</span>
+                                    <span className="boton" onClick={  this.cancelarBorrado.bind(this)  }>CANCELAR</span>
+                                </span>
+                    botones = ""
                 }
             }
             //////////////////////////////////////////////////////////////////////////////
             /// Modo extendido
             //////////////////////////////////////////////////////////////////////////////
             let datosExtendidos = "";
-            if (this.state["extendido"]){
-                datosExtendidos = <div>
-                    <strong>Email:</strong> <span contentEditable={editable}> {this.state["datosUsuario"]["email"]}</span>
-                                  </div>
+            if (extendido){
+                if(enEdicion){
+                    datosExtendidos = <div>
+                        <strong>Email:</strong> <input ref={this.emailInput} size="50" name="email" defaultValue={this.state["datosUsuario"]["email"]}></input>
+                    </div>
+                }else{
+                    datosExtendidos = <div>
+                        <strong>Email:</strong> <span > {this.state["datosUsuario"]["email"]}</span>
+                    </div>
+                }
+            }            //////////////////////////////////////////////////////////////////////////////
+            /// Modo extendido
+            //////////////////////////////////////////////////////////////////////////////
+            let datos = "";
+            if(enEdicion){
+                datos =  <span><strong>Nombre:</strong> <input ref={this.nameInput} size="30" name="nombre" defaultValue={this.state["datosUsuario"]["name"]}></input></span>
+            }else{
+                datos =<span><strong>Nombre:</strong> <span>{this.state["datosUsuario"]["name"]}</span></span>
             }
             //////////////////////////////////////////////////////////////////////////////
             /// Renderizo
             //////////////////////////////////////////////////////////////////////////////
             return (
-                <div className={`User ${this.state["extendido"] && "extendido" || ""}`}>
+                <div className={`User ${extendido && "extendido" || ""}`}>
                     <img onClick={this.cambiarModo.bind(this)}
-                         className={`Foto ${this.state["extendido"] && "extendido" || ""}`} src={foto}/>
+                         className={`Foto ${extendido && "extendido" || ""}`} src={foto}/>
                     <div>
-                        <strong>Nombre:</strong> <span contentEditable={editable}>{this.state["datosUsuario"]["name"]}</span>
+                        {datos}
                         {botones}
+                        {botones_borrado}
                     </div>
                     {datosExtendidos}
                 </div>

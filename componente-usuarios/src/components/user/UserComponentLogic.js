@@ -1,4 +1,3 @@
-import foto from './resources/persona.png';
 import './User.css';
 import React from "react"
 import PropTypes from "prop-types";
@@ -9,46 +8,92 @@ class UserComponentLogic extends React.Component{
 
     constructor(props){
         super(props);
-        //this.datos = UserTestData.getDatos(props.id);
-        // El día de mañana, habrá que cambiar l linea anterior, por una llamada a un servicio web, que devuelva ese JSON
-        this.state=UserComponentState.defaultState();
+        this.componentState=new UserComponentState(this)
+        this.state=this.componentState.defaultState();
+        this.nameInput = React.createRef();
+        this.emailInput = React.createRef();
     }
+    // Esta funcion se llama después de crearse el componente en memoria y al pincharse en el HTML
+    // Cuantas veces se llama esta función? 1
+    // Esta función no se vuelve a llamar si cambia una propiedad
+    // Si una propiedad cambia, REACT nos avisa llamando al método: componenDidUpdate
     componentDidMount() {
+        this.componentState.updateEditable(this.props.editable);
         if(this.props.id) // Sería igual que if(this.props.id === undefined)
             getUserData(this.props.id, (datos)=> this.nuevosDatosUsuario(datos) );
-        else if (this.props.userData)
+        else if (this.props.userData) {
             this.nuevosDatosUsuario(this.props.userData)
+        }
+
         //else
         // Definir un estado de error: Esto mostraría en la pantalla: NO SE HAN SUMINISTRADO DATOS DE USUARIO!
     }
+    componentDidUpdate(prevProp){
+        if(this.props.editable !== prevProp.editable) {
+            this.componentState.updateEditable(this.props.editable);
+        }
+    }
 
     nuevosDatosUsuario(datosUsuario){
-        this.setState( UserComponentState.updateUserData(this.state, datosUsuario) );
+         this.componentState.updateUserData(datosUsuario) ;
     }
 
     cambiarModo(){
-        this.setState(UserComponentState.updateVisualizationMode(this.state, !this.state["extendido"] ));
+        this.componentState.updateVisualizationMode(!this.state["extendido"] );
     }
 
     iniciarEdicion(){
-        this.setState(UserComponentState.updateEnEdicion(this.state, true ));
+        this.componentState.updateEnEdicion(true );
+        if(this.props.onUpdateStart)
+            this.props.onUpdateStart(this.state.userData)
     }
     guardarCambios() {
         // Recopilar los datos nuevos y mandarlos al CONTROLADOR, para que los mande al servicio
-        this.setState(UserComponentState.updateEnEdicion(this.state, false ));
+        let nuevoNombre = this.nameInput.current.value;
+        let nuevoEmail = this.emailInput.current.value;
+        console.log("Nuevo nombre", nuevoNombre)
+        console.log("Nuevo email", nuevoEmail)
+        this.componentState.updateEnEdicion( false );
+        if(this.props.onUpdateEnd)
+            this.props.onUpdateEnd()
+
     }
     cancelarCambios() {
         // Restaurar valores anteriores
-        this.setState(UserComponentState.updateEnEdicion(this.state, false ));
+        this.componentState.updateEnEdicion( false );
+        if(this.props.onUpdateEnd)
+            this.props.onUpdateEnd()
+    }
+
+    iniciarBorrado() {
+        this.componentState.updateEnBorrado( true );
+
+    }
+    cancelarBorrado() {
+        this.componentState.updateEnBorrado( false );
+    }
+    confirmarBorrado() {
+        if(this.props.onDelete)
+            this.props.onDelete(this.state.datosUsuario)
+        this.componentState.updateEnBorrado( false );
     }
 }
 
 UserComponentLogic.propTypes={
     id: PropTypes.string,
     userData: PropTypes.object,
-    updateMode: PropTypes.bool
-        // DISABLED: No se muestra botón de editar
+    editable: PropTypes.bool,
+    borrable: PropTypes.bool,
+    onUpdateStart: PropTypes.func,
+    onUpdateEnd: PropTypes.func,
+    onDelete: PropTypes.func,
+
+    // DISABLED: No se muestra botón de editar
         // ENABLED: Se muestra botón de editar
+}
+UserComponentLogic.defaultProps = {
+    editable : false,
+    borrable : false
 }
 export default UserComponentLogic;
 

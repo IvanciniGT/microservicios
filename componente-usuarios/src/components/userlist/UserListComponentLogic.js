@@ -9,13 +9,20 @@ class UserListComponentLogic extends React.Component{
 
     constructor(props){
         super(props);
-        this.state=UserListComponentState.defaultState();
+        this.componentState=new UserListComponentState(this)
+        this.state = this.componentState.defaultState();
     }
     componentDidMount() {
         getUserListData((datos)=> this.nuevosDatosUsuarios(datos) );
     }
     nuevosDatosUsuarios(datosUsuario){
-        this.setState( UserListComponentState.updateUserListData(this.state, datosUsuario) );
+        this.componentState.updateUserListData( datosUsuario);
+    }
+    nuevoUsuarioEnEdicion(usuario){
+        this.componentState.asignarUsuarioEnEdicion( usuario);
+    }
+    sinUsuarioEnEdicion(){
+        this.componentState.desasignarUsuarioEnEdicion();
     }
 
 }

@@ -630,3 +630,154 @@ App1 en la que voy a meter el componente:
 App2 (que podría ser la misma app1).... Tengo una pantalla llamada: Expediente.
 En ella, me muestra los datos de un expediente y los usuarios asignados a su tramitación.
 Qué haría en esa pantalla el botón borrar? Desasignar al usuario del expediente
+
+---
+
+UserList
+
+    User 1
+        cuando Entres En Edicion, me avisas: Llama a A(indicando que eres el usuario 1)
+        cuando salgas de edicion, me avisas: llamas a B
+    User 2
+        cuando Entres En Edicion, me avisas: Llama a A(indicando que eres el usuario 2)
+        cuando salgas de edicion, me avisas: llamas a B
+    User 3
+        cuando Entres En Edicion, me avisas: Llama a A(indicando que eres el usuario 3)
+        cuando salgas de edicion, me avisas: llamas a B
+    User 4
+        cuando Entres En Edicion, me avisas: Llama a A(indicando que eres el usuario 4)
+        cuando salgas de edicion, me avisas: llamas a B
+
+
+ReactJS 
+
+Genera la representación de un componente en HTML => Le genera un DOM (Es un DOM que no es el del navegador)
+                                                                        VirtualDOM
+React compara el VirtualDom con el DOM del navegador... y actualiza solo las partes que han cambiado.
+Esto es para mejorar el rendimiento y la interactividad.
+
+Para REACT, es complicado hacer ese trabajo en listas generadas. Hay que ayudarle.
+
+Listado que muestra 3 usuarios
+<user key="VALOR">
+<user>
+<user>
+
+El valor debe ser UNICO EN LA LISTA
+
+Listado que muestra 100 usuarios.
+Y ahora le aplico un filtro y se quedan 50 usuarios.
+
+------
+
+UserList                                                            User
+props                                                               props
+state                                                               state
+
+
+
+
+                                                                                    componentDidMount         componentDidUpdate
+--------------------------------------------------------------------------------------------------------------------------------
+User
+--------------------------------------------------------------------------------------------------------------------------------
+props:                                                      state:                      Al montar el componente        Dinámica
+    datosUsuario    ---->                                       datosUsuario                        √                     x
+    id              ---->   GET Servicio REST                   datosUsuario                        √                     x
+    editable        ---->                                       editable                            √                     √
+                                                                enEdicion
+    onUpdateStart                                                                                   √                     x
+    onUpdateEnd                                                                                     √                     x
+    borrable                                                                                        √                     x
+                                                                enBorrado=false
+                                                                    -> true Cuando apretan el boton
+--------------------------------------------------------------------------------------------------------------------------------
+^^^^                                                        ^^^^
+Pasar información del padre al componente                   Forzar un renderizado
+vvvv                                                        vvvv
+--------------------------------------------------------------------------------------------------------------------------------
+UserList
+--------------------------------------------------------------------------------------------------------------------------------
+props:                                                      state:
+    ninguna                                                     datosUsuarios:      [1,2,3,4,5]
+                                                                usuarioEnEdicion:   -
+--------------------------------------------------------------------------------------------------------------------------------
+
+El usuarioEnEdicion (en UserList) se utilizara para rellenar el valor de editable (en User) al renderizar UserList
+Cuando un User se pone en modo edición (Le apretamos en el botón editar):
+    Hay que poner usuarioEnEdicion(del componente UserList) con el dato de ese usuario
+    User puede acceder a los datos del UserList? NO... ENCAPSULACION DE CODIGO
+
+Clase a                 Clase B
+                            private prop b1 // Encapsulación
+a le pide a b que cambie el valor (set)     // llamando a una función de B
+
+---
+
+Poner un botón de Eliminar -> Usuario
+
+Cuando se haga click en ese botón -> preguntar si estamos seguros
+                                  -> Si estamos seguros
+                                        -> Llamamos a una función que nos hayan suministrado
+
+
+
+public class Usuario{
+
+    private boolean borrable;                           // ESTADO  = state Datos a nivel de instancia
+
+    public Usuario (boolean borrable){                  // INICIALIZACION DE LA PROPIEDAD al crear el objeto
+        this.nuevoBorrable=nuevoBorrable;
+    }
+
+    public void setBorrable(boolean nuevoBorrable){     // CAMBIO DE PROPIEDAD
+        this.nuevoBorrable=nuevoBorrable;
+    }
+}
+
+
+                                                    ? Si prop.borrable == true && state.enBorrado = false
+            Usuario:Ivan                            |BORRAR|            ---> state.enBorrado = true
+
+                                vvvvv
+                                                    ? Si prop.borrable == true && state.enBorrado = true
+            Usuario:Ivan                            |SI| |NO|           ----> state.enBorrador = false
+                                                     |
+                                                     |
+                                                     v
+                                                     llamar a una función que me hayan dicho
+
+Pasos:
+1 - Añadir la propiedad     borrable
+1,5 - Añadir la propiedad   funcionALaQueLlamarCuandoConfirmenBorrado
+2 - Añadir el estado        en borrado
+3 - crear el metodo:        enBorrado -> cambiar en el estado en borrado = true
+4 - crear el metodo:        yaNoEnBorrado -> cambiar en el estado en borrado = false
+4,5 - crear el metodo:      borradoConfirmado ->
+                                                    Llamar a la funcion que me hayan suministrado dinamicamente ????
+                                                            prop.funcionALaQueLlamarCuandoConfirmenBorrado(EL USUARIO QUE SE BORRA)
+                                                    yaNoEnBorrado()
+5- render
+
+    if ( prop.borrable == true)
+        if( state.enBorrado = false ){
+            <boton 
+                click="enBorrado"
+            >BORRAR</boton>
+        }else{
+            <boton 
+                click="borradoConfirmado"
+            >SI</boton>
+            <boton 
+                click="yaNoEnBorrado"
+            >NO</boton>
+        }
+    }
+
+
+    <button onClick="confirmarBorrado();" >Borrar</button>
+    <script language="javascript>
+        function confirmarBorrado(){
+            confirm()....
+        }
+    </script>

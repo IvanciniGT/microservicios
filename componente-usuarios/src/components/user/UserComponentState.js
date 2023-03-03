@@ -1,35 +1,41 @@
 class UserComponentState {
-    static defaultState(){
-        return {
+
+    constructor(component) {
+        this.component=component
+    }
+
+    updateState(property, value){
+        this.state = {
+            ...this.state,
+        }
+        this.state[property]=value
+        this.component.setState(this.state)
+    }
+
+    defaultState(){
+        this.state = {
             "extendido": false,
             "datosUsuario": undefined,
-            "editable": true,
-            "enEdicion": false
+            "editable": false,
+            "enEdicion": false,
+            "enBorrado": false
         }
+        return this.state
     }
-    static updateEditable(currentState, editable){
-        return {
-            ...currentState,
-            "editable": editable
-        }
+    updateEditable(editable){
+        this.updateState("editable", editable)
     }
-    static updateEnEdicion(currentState, enEdicion){
-        return {
-            ...currentState,
-            "enEdicion": enEdicion
-        }
+    updateEnEdicion(enEdicion){
+        this.updateState("enEdicion", enEdicion)
     }
-    static updateVisualizationMode(currentState, extendido){
-        return {
-            ...currentState,
-            "extendido": extendido
-        }
+    updateVisualizationMode(extendido){
+        this.updateState("extendido", extendido)
     }
-    static updateUserData(currentState, userData){
-        return {
-            ...currentState,
-            "datosUsuario": userData
-        }
+    updateUserData(userData){
+        this.updateState("datosUsuario", userData)
+    }
+    updateEnBorrado(enBorrado){
+        this.updateState("enBorrado", enBorrado)
     }
 }
 

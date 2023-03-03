@@ -8,8 +8,19 @@ class UserList extends UserListComponentLogic{
     render() { //JSX
         if (this.state.datosUsuarios) {
             return (
-                <div>
-                    {this.state.datosUsuarios.map(datosUsuario => <User userData={datosUsuario} updateMode={true}></User>)}
+                <div >
+                    {this.state.datosUsuarios.map(datosUsuario =>
+                        <div  key={datosUsuario.id}>
+                            <User userData={datosUsuario}
+                                  editable={!this.state.usuarioEnEdicion || this.state.usuarioEnEdicion === datosUsuario }
+                                  onUpdateStart={ () =>this.nuevoUsuarioEnEdicion(datosUsuario) }
+                                  onUpdateEnd={ this.sinUsuarioEnEdicion.bind(this) }
+                                  borrable={true}
+                                  onDelete={(usuario)=>alert("borrando: " + usuario )}
+                            ></User>
+                        </div>
+                        )
+                    }
                 </div>
             ) // Expresion
             // Declaro una función, que toma datos de un usuario y devuelve una marca User con los datos pertinentes
