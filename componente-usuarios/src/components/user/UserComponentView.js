@@ -1,9 +1,11 @@
 import foto from './resources/persona.png';
 import './User.css';
 import React from "react"
+import {connect} from "react-redux";
+import {AsignarUsuarioEnEdicion, DesasignarUsuarioEnEdicion} from "../../actions/UsuariosEdicionActions";
 import UserComponentLogic from "./UserComponentLogic";  //"./UserController"; // Equivalente a un import static de java
 
-class User extends UserComponentLogic{
+class UserComponentView extends UserComponentLogic{
 
     render() { //JSX
 
@@ -98,6 +100,21 @@ class User extends UserComponentLogic{
   }
 
 }
+
+// REDUX
+
+function mapDispatchToProps (dispatch) {
+    return {
+        onUpdateStart: (usuario) => dispatch(AsignarUsuarioEnEdicion(usuario)) ,
+        onUpdateEnd: () => dispatch(DesasignarUsuarioEnEdicion())
+    }
+}
+
+
+const User = connect(
+    ()=>{}, // Lo que leo del store
+    mapDispatchToProps)    // Escribir en el store
+    (UserComponentView);
 
 export default User;
 

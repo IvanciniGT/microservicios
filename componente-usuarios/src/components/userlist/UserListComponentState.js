@@ -6,7 +6,7 @@ class UserListComponentState {
     defaultState(){
         this.state= {
             "datosUsuarios": undefined,
-            "usuarioEnEdicion": undefined
+//            "usuarioEnEdicion": undefined
         }
         return this.state
     }
@@ -21,13 +21,14 @@ class UserListComponentState {
     updateUserListData( userListData){
         this.updateState("datosUsuarios", userListData)
     }
+/*
     asignarUsuarioEnEdicion( user){
         this.updateState("usuarioEnEdicion", user)
     }
     desasignarUsuarioEnEdicion(){
         this.updateState("usuarioEnEdicion", undefined)
     }
-
+*/
 }
 
 export default UserListComponentState;

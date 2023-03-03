@@ -1,9 +1,11 @@
 import './UserList.css';
 import React from "react"
 import UserListComponentLogic from "./UserListComponentLogic";
-import User from "../user/UserComponentView";  //"./UserController"; // Equivalente a un import static de java
+import User from "../user/UserComponentView";
+import UserListComponentConectado from "./UserListComponentLogic";
+import {connect} from "react-redux";  //"./UserController"; // Equivalente a un import static de java
 
-class UserList extends UserListComponentLogic{
+class UserListComponentView extends UserListComponentLogic{
 
     render() { //JSX
         if (this.state.datosUsuarios) {
@@ -12,9 +14,7 @@ class UserList extends UserListComponentLogic{
                     {this.state.datosUsuarios.map(datosUsuario =>
                         <div  key={datosUsuario.id}>
                             <User userData={datosUsuario}
-                                  editable={!this.state.usuarioEnEdicion || this.state.usuarioEnEdicion === datosUsuario }
-                                  onUpdateStart={ () =>this.nuevoUsuarioEnEdicion(datosUsuario) }
-                                  onUpdateEnd={ this.sinUsuarioEnEdicion.bind(this) }
+                                  editable={!this.props.usuarioEnEdicion || this.props.usuarioEnEdicion === datosUsuario }
                                   borrable={true}
                                   onDelete={(usuario)=>alert("borrando: " + usuario )}
                             ></User>
@@ -23,6 +23,12 @@ class UserList extends UserListComponentLogic{
                     }
                 </div>
             ) // Expresion
+
+            //onUpdateStart={ () =>this.nuevoUsuarioEnEdicion(datosUsuario) }
+            //onUpdateEnd={ this.sinUsuarioEnEdicion.bind(this) }
+
+
+
             // Declaro una función, que toma datos de un usuario y devuelve una marca User con los datos pertinentes
             // Esa función la aplico sobre todos los datos de usuario que tengo (MAP)
             // Esto no lo podría hacer nunca con un forEach.
@@ -38,4 +44,17 @@ class UserList extends UserListComponentLogic{
     }
 }
 
+/// REDUX
+
+
+function mapStateToProps (state) {
+    return {
+        usuarioEnEdicion: state.usuarioEnEdicion,
+    }
+}
+// Extender la clase
+const UserList = connect(
+    mapStateToProps,       // Lo que leo del store
+    ()=>{}) // Lo que modifico
+    (UserListComponentView);
 export default UserList;

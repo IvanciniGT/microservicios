@@ -2,7 +2,9 @@ import './User.css';
 import React from "react"
 import PropTypes from "prop-types";
 import {getUserData} from "../../test/components/user/TestUserController"
-import UserComponentState from "./UserComponentState";  //"./UserController"; // Equivalente a un import static de java
+import UserComponentState from "./UserComponentState";
+import {AsignarUsuarioEnEdicion, DesasignarUsuarioEnEdicion} from "../../actions/UsuariosEdicionActions";
+import {connect} from "react-redux";  //"./UserController"; // Equivalente a un import static de java
 
 class UserComponentLogic extends React.Component{
 
@@ -50,6 +52,8 @@ class UserComponentLogic extends React.Component{
     guardarCambios() {
         // Recopilar los datos nuevos y mandarlos al CONTROLADOR, para que los mande al servicio
         let nuevoNombre = this.nameInput.current.value;
+                                                // value js puro y duro
+                                        // HTMLElement del DOM . Equivalente en js a document.getElementById(ID)
         let nuevoEmail = this.emailInput.current.value;
         console.log("Nuevo nombre", nuevoNombre)
         console.log("Nuevo email", nuevoEmail)
@@ -82,11 +86,14 @@ class UserComponentLogic extends React.Component{
 UserComponentLogic.propTypes={
     id: PropTypes.string,
     userData: PropTypes.object,
+
     editable: PropTypes.bool,
-    borrable: PropTypes.bool,
     onUpdateStart: PropTypes.func,
     onUpdateEnd: PropTypes.func,
+
+    borrable: PropTypes.bool,
     onDelete: PropTypes.func,
+
 
     // DISABLED: No se muestra botón de editar
         // ENABLED: Se muestra botón de editar
@@ -95,6 +102,8 @@ UserComponentLogic.defaultProps = {
     editable : false,
     borrable : false
 }
+
+// Extender la clase
 export default UserComponentLogic;
 
 // Al usar una marca User, se crea una instancia de esta clase.

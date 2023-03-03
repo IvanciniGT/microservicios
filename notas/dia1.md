@@ -781,3 +781,93 @@ Pasos:
             confirm()....
         }
     </script>
+
+
+
+User - Este es un componente que puede funcionar por si solo
+    Comunicaciones con este componente:
+        - Como mandarle datos/información
+          - Propiedades.... Quien puede pasar propiedades a un componente???? Su padre.. el creador del componente WEB
+                id: PropTypes.string,
+                userData: PropTypes.object,
+                editable: PropTypes.bool,
+                onUpdateStart: PropTypes.func,
+                onUpdateEnd: PropTypes.func,
+                borrable: PropTypes.bool,
+                onDelete: PropTypes.func,
+
+        - Como nos manda datos/informacion
+                Mediante funciones de callback! Invocando funciones
+                Como pasamos esas funciones? Con las propiedades
+                Y quien puede por tanto pasar esas funciones? De nuevo el padre
+
+Todas las comunicaciones son:
+    De padre a hijo
+        De userList a User -> mediante propiedades
+    De hijo a padre
+        De user a su UserList -> mediante funciones de callback, definidas por el padre
+
+
+REDUX: Es una libreria que nos permite definir un estado global, accesible desde cualquier componente
+
+REDUX se basa en el concepto de STORE: Un store es un almacenamiento de ESTADOS
+
+Dentro de REDUX se usan 2 conceptos:
+    REDUCER: Un objeto que gestiona los estados referentes a una característica de mi aplicación
+    ACTION:  Un action es una función que cambiar el estado de un Reducer
+
+A pesar de que vamos a tener estados globales, me puede interesar tener esos estados agrupados por funcionalidad
+
+
+
+Sea la app: Gestion de expedientes de XXXXX
+Estados globales:                                           STORE
+    Usuario logeado                                 \   
+        datos del usuario logueado                   >      REDUCER
+        tiempo de sesion                            /
+    Expediente gestionado
+        expediente que se está consultando
+        Si estamos en modo edición o no
+        Estado del expediente
+    Usuarios gestioandos
+        Si hay un usuario en edición
+        Si hay un usuario en borrado
+    Errores
+        ErrorANotificar
+        Historial de errores notificados
+        Si el error ya ha sido notificado
+
+
+Equivalente en JAVA:
+    Store = HttpSession
+    Solo que no tengo un único HttpSession.
+    Un HttpSession es algo así como un MAP
+    Pues lo que tengo es un Map de Maps
+    Es decir, varios maps, cada uno identificado por una clave.
+
+
+En un store, de define una cola de REDUCERS
+
+STORE: APP expedientes
+        REDUCER: datos del expediente
+            Cada reducer gestionará un conjunto de ACCIONES
+                ACCION: nuevoExpediente en tramitacion
+        REDUCER: datos de usuario logeado
+                ACCION: login
+                ACCION: logout
+        REDUCER: errores
+                ACCION: notificarNuevoError
+                ACCION: errorNotificado
+
+Esas acciones hay que definirlas
+
+Y lo que hacemos en Redux es al STORE:
+APP expredientes le hacemos un "dispach" de una ACCION
+
+
+Hasta aqui REDUX PURO Y DURO.
+
+Pero nosotros estamos usando REACT-> REACT-REDUX
+Que permite esta libreria:
+Mapear en automático:
+Los estados de REDUX <-> PROPIEDADES DE COMPONENTES REACT
